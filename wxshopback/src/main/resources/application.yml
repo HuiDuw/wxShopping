@@ -1,0 +1,37 @@
+server:
+  port: 8888
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/wx_shop?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2b8
+    username: root
+    password: 249338320hhjjqq
+    hikari:
+      max-lifetime: 1000000
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+#  web:
+#    resources:
+#      static-locations:
+#  devtools:
+#    restart:
+#      enabled: true
+#      additional-paths: src/main/java
+#      exclude: static/**
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.huiduw.xshopping.model
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+authority:
+  info: '[]'

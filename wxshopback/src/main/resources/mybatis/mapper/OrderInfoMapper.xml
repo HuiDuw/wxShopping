@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huiduw.xshopping.mapper.OrderInfoMapper">
+    <resultMap id="BaseResultMap" type="com.huiduw.xshopping.model.OrderInfo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="orderId" jdbcType="BIGINT" property="orderid"/>
+        <result column="totalPrice" jdbcType="DOUBLE" property="totalprice"/>
+        <result column="userid" jdbcType="BIGINT" property="userid"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="linkAddress" jdbcType="VARCHAR" property="linkaddress"/>
+        <result column="linkPhone" jdbcType="VARCHAR" property="linkphone"/>
+        <result column="linkMan" jdbcType="VARCHAR" property="linkman"/>
+        <result column="createTime" jdbcType="VARCHAR" property="createtime"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, orderId, totalPrice, userid, level, linkAddress, linkPhone, linkMan, createTime,
+        state
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from order_info
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.huiduw.xshopping.model.OrderInfo"
+            useGeneratedKeys="true">
+        insert into order_info (orderId, totalPrice, userid,
+        level, linkAddress, linkPhone,
+        linkMan, createTime, state
+        )
+        values (#{orderid,jdbcType=BIGINT}, #{totalprice,jdbcType=DOUBLE}, #{userid,jdbcType=BIGINT},
+        #{level,jdbcType=INTEGER}, #{linkaddress,jdbcType=VARCHAR}, #{linkphone,jdbcType=VARCHAR},
+        #{linkman,jdbcType=VARCHAR}, #{createtime,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.huiduw.xshopping.model.OrderInfo"
+            useGeneratedKeys="true">
+        insert into order_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderid != null">
+                orderId,
+            </if>
+            <if test="totalprice != null">
+                totalPrice,
+            </if>
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="linkaddress != null">
+                linkAddress,
+            </if>
+            <if test="linkphone != null">
+                linkPhone,
+            </if>
+            <if test="linkman != null">
+                linkMan,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="state != null">
+                state,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderid != null">
+                #{orderid,jdbcType=BIGINT},
+            </if>
+            <if test="totalprice != null">
+                #{totalprice,jdbcType=DOUBLE},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=BIGINT},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="linkaddress != null">
+                #{linkaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="linkphone != null">
+                #{linkphone,jdbcType=VARCHAR},
+            </if>
+            <if test="linkman != null">
+                #{linkman,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                #{state,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.huiduw.xshopping.model.OrderInfo">
+        update order_info
+        <set>
+            <if test="orderid != null">
+                orderId = #{orderid,jdbcType=BIGINT},
+            </if>
+            <if test="totalprice != null">
+                totalPrice = #{totalprice,jdbcType=DOUBLE},
+            </if>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=BIGINT},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="linkaddress != null">
+                linkAddress = #{linkaddress,jdbcType=VARCHAR},
+            </if>
+            <if test="linkphone != null">
+                linkPhone = #{linkphone,jdbcType=VARCHAR},
+            </if>
+            <if test="linkman != null">
+                linkMan = #{linkman,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null">
+                state = #{state,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.huiduw.xshopping.model.OrderInfo">
+        update order_info
+        set orderId = #{orderid,jdbcType=BIGINT},
+        totalPrice = #{totalprice,jdbcType=DOUBLE},
+        userid = #{userid,jdbcType=BIGINT},
+        level = #{level,jdbcType=INTEGER},
+        linkAddress = #{linkaddress,jdbcType=VARCHAR},
+        linkPhone = #{linkphone,jdbcType=VARCHAR},
+        linkMan = #{linkman,jdbcType=VARCHAR},
+        createTime = #{createtime,jdbcType=VARCHAR},
+        state = #{state,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huiduw.xshopping.mapper.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.huiduw.xshopping.model.UserInfo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="nickName" jdbcType="VARCHAR" property="nickname"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="birthday" jdbcType="VARCHAR" property="birthday"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="cardId" jdbcType="VARCHAR" property="cardid"/>
+        <result column="level" jdbcType="INTEGER" property="level"/>
+        <result column="account" jdbcType="DOUBLE" property="account"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, password, nickName, sex, age, birthday, phone, address, code, email, cardId,
+        level, account
+    </sql>
+<!--    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">-->
+<!--        select-->
+<!--        <include refid="Base_Column_List"/>-->
+<!--        from user_info-->
+<!--        where id = #{id,jdbcType=BIGINT}-->
+<!--    </select>-->
+    <select id="findByName" resultType="com.huiduw.xshopping.model.UserInfo">
+        select * from user_info where 1=1
+        <if test="name != null and name != 'all' and name != ''">
+            and `name` = #{name}
+        </if>
+    </select>
+    <select id="checkRepeat" resultType="java.lang.Integer">
+        select count(*) from user_info where ${column} = #{value}
+    </select>
+<!--    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">-->
+<!--        delete from user_info-->
+<!--        where id = #{id,jdbcType=BIGINT}-->
+<!--    </delete>-->
+<!--    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.huiduw.xshopping.model.UserInfo"-->
+<!--            useGeneratedKeys="true">-->
+<!--        insert into user_info (name, password, nickName,-->
+<!--        sex, age, birthday,-->
+<!--        phone, address, code,-->
+<!--        email, cardId, level,-->
+<!--        account)-->
+<!--        values (#{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},-->
+<!--        #{sex,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{birthday,jdbcType=VARCHAR},-->
+<!--        #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},-->
+<!--        #{email,jdbcType=VARCHAR}, #{cardid,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},-->
+<!--        #{account,jdbcType=DOUBLE})-->
+<!--    </insert>-->
+<!--    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.huiduw.xshopping.model.UserInfo"-->
+<!--            useGeneratedKeys="true">-->
+<!--        insert into user_info-->
+<!--        <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--            <if test="name != null">-->
+<!--                name,-->
+<!--            </if>-->
+<!--            <if test="password != null">-->
+<!--                password,-->
+<!--            </if>-->
+<!--            <if test="nickname != null">-->
+<!--                nickName,-->
+<!--            </if>-->
+<!--            <if test="sex != null">-->
+<!--                sex,-->
+<!--            </if>-->
+<!--            <if test="age != null">-->
+<!--                age,-->
+<!--            </if>-->
+<!--            <if test="birthday != null">-->
+<!--                birthday,-->
+<!--            </if>-->
+<!--            <if test="phone != null">-->
+<!--                phone,-->
+<!--            </if>-->
+<!--            <if test="address != null">-->
+<!--                address,-->
+<!--            </if>-->
+<!--            <if test="code != null">-->
+<!--                code,-->
+<!--            </if>-->
+<!--            <if test="email != null">-->
+<!--                email,-->
+<!--            </if>-->
+<!--            <if test="cardid != null">-->
+<!--                cardId,-->
+<!--            </if>-->
+<!--            <if test="level != null">-->
+<!--                level,-->
+<!--            </if>-->
+<!--            <if test="account != null">-->
+<!--                account,-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--        <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--            <if test="name != null">-->
+<!--                #{name,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="password != null">-->
+<!--                #{password,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="nickname != null">-->
+<!--                #{nickname,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="sex != null">-->
+<!--                #{sex,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="age != null">-->
+<!--                #{age,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="birthday != null">-->
+<!--                #{birthday,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="phone != null">-->
+<!--                #{phone,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="address != null">-->
+<!--                #{address,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="code != null">-->
+<!--                #{code,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="email != null">-->
+<!--                #{email,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="cardid != null">-->
+<!--                #{cardid,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="level != null">-->
+<!--                #{level,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="account != null">-->
+<!--                #{account,jdbcType=DOUBLE},-->
+<!--            </if>-->
+<!--        </trim>-->
+<!--    </insert>-->
+<!--    <update id="updateByPrimaryKeySelective" parameterType="com.huiduw.xshopping.model.UserInfo">-->
+<!--        update user_info-->
+<!--        <set>-->
+<!--            <if test="name != null">-->
+<!--                name = #{name,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="password != null">-->
+<!--                password = #{password,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="nickname != null">-->
+<!--                nickName = #{nickname,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="sex != null">-->
+<!--                sex = #{sex,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="age != null">-->
+<!--                age = #{age,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="birthday != null">-->
+<!--                birthday = #{birthday,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="phone != null">-->
+<!--                phone = #{phone,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="address != null">-->
+<!--                address = #{address,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="code != null">-->
+<!--                code = #{code,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="email != null">-->
+<!--                email = #{email,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="cardid != null">-->
+<!--                cardId = #{cardid,jdbcType=VARCHAR},-->
+<!--            </if>-->
+<!--            <if test="level != null">-->
+<!--                level = #{level,jdbcType=INTEGER},-->
+<!--            </if>-->
+<!--            <if test="account != null">-->
+<!--                account = #{account,jdbcType=DOUBLE},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        where id = #{id,jdbcType=BIGINT}-->
+<!--    </update>-->
+<!--    <update id="updateByPrimaryKey" parameterType="com.huiduw.xshopping.model.UserInfo">-->
+<!--        update user_info-->
+<!--        set name = #{name,jdbcType=VARCHAR},-->
+<!--        password = #{password,jdbcType=VARCHAR},-->
+<!--        nickName = #{nickname,jdbcType=VARCHAR},-->
+<!--        sex = #{sex,jdbcType=VARCHAR},-->
+<!--        age = #{age,jdbcType=INTEGER},-->
+<!--        birthday = #{birthday,jdbcType=VARCHAR},-->
+<!--        phone = #{phone,jdbcType=VARCHAR},-->
+<!--        address = #{address,jdbcType=VARCHAR},-->
+<!--        code = #{code,jdbcType=VARCHAR},-->
+<!--        email = #{email,jdbcType=VARCHAR},-->
+<!--        cardId = #{cardid,jdbcType=VARCHAR},-->
+<!--        level = #{level,jdbcType=INTEGER},-->
+<!--        account = #{account,jdbcType=DOUBLE}-->
+<!--        where id = #{id,jdbcType=BIGINT}-->
+<!--    </update>-->
+</mapper>
